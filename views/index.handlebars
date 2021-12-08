@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация</title>
+    <meta charset="utf-8" />
+
+</head>
+<body>
+    <h1>Давай проведем день продуктивно!</h1>
+    <form action="/todos" method="post">
+        <label>Задача</label><br>
+        <input type="text" name="description" /><br><br>
+        <label>приоритет</label><br>
+        <input type="number" name="prior" /><br><br>
+        <input type="submit" value="Отправить"/>
+    </form>
+<h2>В процессе</h2>
+<ul>
+  {{#each todoArr.pending}}
+  <li>
+    <form action="/pending/{{this.id}}" method ="post">
+      {{description}} - {{prior}}
+    <input type ="submit" value ="дело сделано">
+    </form>
+  </li>
+  {{/each}}
+
+</ul>
+<br><br>
+
+<h2>Сделано</h2>
+<ul>
+  {{#each todoArr.over}}
+  <li>
+    <form action="/over/{{this.id}}" method ="post" id='over'>
+      {{description}}
+    <input type ="submit" value ="удалить" name="delete" value="delete">
+    <input type="submit" value ="вернуть" name="getBack" value="back">
+    </form>
+  </li>
+  {{/each}}
+
+</ul>
+<br><br>
+<br><br>
+<form action="/deleteAll" method="post" >
+<input type="submit" value="удалитьВсе">
+</form>
+
+
+</body>
+</html>
