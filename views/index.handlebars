@@ -6,13 +6,15 @@
 
 </head>
 <body>
+  
+
     <h1>Давай проведем день продуктивно!</h1>
     <form class="addTodo" action="/todos" method="post">
         <label>Задача</label><br>
         <input class="in big" type="text" name="description" /><br><br>
         <label>Приоритет</label><br>
         <input class="in small" type="number" name="prior" /><br><br>
-        <input type="submit" value="Отправить"/>
+        <input class="send" type="submit" value="Отправить"/>
     </form>
 <h2>В процессе</h2>
 <ul>
@@ -20,7 +22,7 @@
   <li>
     <form action="/pending/{{this.id}}" method ="post">
       {{description}} - {{prior}}
-    <input type ="submit" value ="дело сделано">
+    <input class="move" type ="submit" value ="дело сделано">
     </form>
   </li>
   {{/each}}
@@ -34,8 +36,8 @@
   <li>
     <form action="/over/{{this.id}}" method ="post" id='over'>
       {{description}}
-    <input type ="submit" value ="удалить" name="delete" value="delete">
-    <input type="submit" value ="вернуть" name="getBack" value="back">
+    <input class="delete" type ="submit" value ="удалить" name="delete" value="delete">
+    <input class="move" type="submit" value ="вернуть" name="getBack" value="back">
     </form>
   </li>
   {{/each}}
@@ -44,9 +46,14 @@
 <br><br>
 <br><br>
 <form class="deleteAll" action="/deleteAll" method="post" >
-<input type="submit" value="удалитьВсе">
+<input class="deleteAllin" type="submit" value="удалитьВсе">
 </form>
 
+<div class="waveBackGround">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+    </svg>
+</div>
 
 </body>
 </html>
