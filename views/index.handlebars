@@ -7,11 +7,11 @@
 </head>
 <body>
     <h1>Давай проведем день продуктивно!</h1>
-    <form action="/todos" method="post">
+    <form class="addTodo" action="/todos" method="post">
         <label>Задача</label><br>
-        <input type="text" name="description" /><br><br>
-        <label>приоритет</label><br>
-        <input type="number" name="prior" /><br><br>
+        <input class="in big" type="text" name="description" /><br><br>
+        <label>Приоритет</label><br>
+        <input class="in small" type="number" name="prior" /><br><br>
         <input type="submit" value="Отправить"/>
     </form>
 <h2>В процессе</h2>
@@ -43,7 +43,7 @@
 </ul>
 <br><br>
 <br><br>
-<form action="/deleteAll" method="post" >
+<form class="deleteAll" action="/deleteAll" method="post" >
 <input type="submit" value="удалитьВсе">
 </form>
 
