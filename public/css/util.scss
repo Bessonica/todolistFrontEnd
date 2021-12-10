@@ -1,8 +1,41 @@
 @import "util.css";
+@import "wave.scss";
+@import "color.scss";
 
-//переменные
-$colorPurple: #8047B8;
 
+
+
+%addTodoDeleteAll {
+    cursor:default;
+    padding-left: 0%;
+    color: black;
+
+    background-color: none;
+
+    &.addTodo{
+        width:25%;
+        background-color: none;
+    }
+
+    &.deleteAll{
+        background-color: none;
+    }
+}
+
+%bigButton {
+    display: block;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 30px;
+    background: $colorPurple;
+}
+
+%smallButton {
+    border: none;
+    padding: 5px 8px;
+    border-radius: 10px;
+    background:  $colorPurple;
+}
 
 // делаем кнопки
 input {
@@ -12,30 +45,24 @@ input {
 .send{
     //ВОТ ЭТУ ЧАСТЬ МОЖНО ПРЕВРАТИТЬ В НАСЛЕДОВАНИЕ\РАСШИРЕНИЕ
     //%testVar
+    @extend %bigButton;
 
-    display: block;
-    border: none;
-    padding: 10px 22px;
-    border-radius: 30px;
-    background: $colorPurple;
 
     &:hover{
-        background: #47B8B8 ;
+        background: $colorBlue ;
         color:white;
     }
 
     &:focus{
-        background: #E58B1A ;
+        background: $colorYellow ;
     }
   }
 
 .deleteAllin {
     //ВОТ ЭТУ ЧАСТЬ МОЖНО ПРЕВРАТИТЬ В НАСЛЕДОВАНИЕ\РАСШИРЕНИЕ
-    display: block;
-    border: none;
-    padding: 10px 22px;
-    border-radius: 30px;
-    background: $colorPurple;
+
+    @extend %bigButton;
+
     &:hover{
         background: red;
         color:white;
@@ -43,10 +70,8 @@ input {
 }
 
 .delete{
-    border: none;
-    padding: 5px 8px;
-    border-radius: 10px;
-    background:  #8047B8;
+
+    @extend %smallButton;
 
     &:hover{
         background: red;
@@ -56,13 +81,11 @@ input {
 }
 
 .move{
-    border: none;
-    padding: 5px 8px;
-    border-radius: 10px;
-    background:  #8047B8;
+
+    @extend %smallButton;
 
     &:hover{
-        background: #47B8B8;
+        background: $colorBlue;
         color:white;
     }
 }
@@ -71,47 +94,50 @@ input {
 // может для списков сделать меньше форму
 // ну тогда можно форму в НАСЛЕДОВАНИЕ/РАСШИРЕНИЕ
 li{
+    font: small-caps 18px/1 serif;
+
+    form {
+        //ВОТ ЭТУ ЧАСТЬ МОЖНО ПРЕВРАТИТЬ В НАСЛЕДОВАНИЕ\РАСШИРЕНИЕ
+        // для h1
+        @extend %addTodoDeleteAll;
+
+    }
+
+}
+
+form {
+    //ВОТ ЭТУ ЧАСТЬ МОЖНО ПРЕВРАТИТЬ В НАСЛЕДОВАНИЕ\РАСШИРЕНИЕ
+    // для h1
+    font: small-caps 18px/1 serif;
+
+    label{
+        @extend %addTodoDeleteAll;
+    }
     
-form {
-    //ВОТ ЭТУ ЧАСТЬ МОЖНО ПРЕВРАТИТЬ В НАСЛЕДОВАНИЕ\РАСШИРЕНИЕ
-    // для h1
+}
+
+h1{
     cursor:default;
     padding-left: 0%;
     font: small-caps 24px/1 serif;
     color: black;
 
     background-color: none;
-
-    &.addTodo{
-        width:25%;
-        background-color: none;
-    }
-
-    &.deleteAll{
-        background-color: none;
-    }
 }
 
 
+.in{
+    background-color: $colorBlue;
+    border: 2px solid black;
+    padding: 5px 14px;
+    border-radius: 5px;
 
-}
-
-form {
-    //ВОТ ЭТУ ЧАСТЬ МОЖНО ПРЕВРАТИТЬ В НАСЛЕДОВАНИЕ\РАСШИРЕНИЕ
-    // для h1
-    cursor:default;
-    padding-left: 0%;
-    font: small-caps 24px/1 serif;
-    color: black;
-
-    background-color: none;
-
-    &.addTodo{
-        width:25%;
-        background-color: none;
+    &.big{
+        color:white;
     }
 
-    &.deleteAll{
-        background-color: none;
+    &.small{
+        width:10%;
+        color:white;
     }
 }

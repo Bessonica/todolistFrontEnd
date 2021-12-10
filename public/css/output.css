@@ -1,15 +1,56 @@
 @import "util.css";
-input {
-  transition: 0.5s;
+.waveBackGround {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: -1;
+}
+.waveBackGround svg {
+  position: relative;
+  display: block;
+  width: calc(144% + 1.3px);
+  height: 323px;
+}
+.waveBackGround .shape-fill {
+  fill: #47B8B8;
 }
 
-.send {
+form label, li form {
+  cursor: default;
+  padding-left: 0%;
+  color: black;
+  background-color: none;
+}
+form label.addTodo, li form.addTodo {
+  width: 25%;
+  background-color: none;
+}
+form label.deleteAll, li form.deleteAll {
+  background-color: none;
+}
+
+.deleteAllin, .send {
   display: block;
   border: none;
   padding: 10px 22px;
   border-radius: 30px;
   background: #8047B8;
 }
+
+.move, .delete {
+  border: none;
+  padding: 5px 8px;
+  border-radius: 10px;
+  background: #8047B8;
+}
+
+input {
+  transition: 0.5s;
+}
+
 .send:hover {
   background: #47B8B8;
   color: white;
@@ -18,68 +59,47 @@ input {
   background: #E58B1A;
 }
 
-.deleteAllin {
-  display: block;
-  border: none;
-  padding: 10px 22px;
-  border-radius: 30px;
-  background: #8047B8;
-}
 .deleteAllin:hover {
   background: red;
   color: white;
 }
 
-.delete {
-  border: none;
-  padding: 5px 8px;
-  border-radius: 10px;
-  background: #8047B8;
-}
 .delete:hover {
   background: red;
   color: white;
 }
 
-.move {
-  border: none;
-  padding: 5px 8px;
-  border-radius: 10px;
-  background: #8047B8;
-}
 .move:hover {
   background: #47B8B8;
   color: white;
 }
 
-li form {
+li {
+  font: small-caps 18px/1 serif;
+}
+form {
+  font: small-caps 18px/1 serif;
+}
+h1 {
   cursor: default;
   padding-left: 0%;
   font: small-caps 24px/1 serif;
   color: black;
-  background-color: none;
-}
-li form.addTodo {
-  width: 25%;
-  background-color: none;
-}
-li form.deleteAll {
   background-color: none;
 }
 
-form {
-  cursor: default;
-  padding-left: 0%;
-  font: small-caps 24px/1 serif;
-  color: black;
-  background-color: none;
+.in {
+  background-color: #47B8B8;
+  border: 2px solid black;
+  padding: 5px 14px;
+  border-radius: 5px;
 }
-form.addTodo {
-  width: 25%;
-  background-color: none;
+.in.big {
+  color: white;
 }
-form.deleteAll {
-  background-color: none;
+.in.small {
+  width: 10%;
+  color: white;
 }
 
 /*# sourceMappingURL=output.css.map */
