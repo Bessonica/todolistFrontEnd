@@ -1,0 +1,85 @@
+@import "util.css";
+input {
+  transition: 0.5s;
+}
+
+.send {
+  display: block;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 30px;
+  background: #8047B8;
+}
+.send:hover {
+  background: #47B8B8;
+  color: white;
+}
+.send:focus {
+  background: #E58B1A;
+}
+
+.deleteAllin {
+  display: block;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 30px;
+  background: #8047B8;
+}
+.deleteAllin:hover {
+  background: red;
+  color: white;
+}
+
+.delete {
+  border: none;
+  padding: 5px 8px;
+  border-radius: 10px;
+  background: #8047B8;
+}
+.delete:hover {
+  background: red;
+  color: white;
+}
+
+.move {
+  border: none;
+  padding: 5px 8px;
+  border-radius: 10px;
+  background: #8047B8;
+}
+.move:hover {
+  background: #47B8B8;
+  color: white;
+}
+
+li form {
+  cursor: default;
+  padding-left: 0%;
+  font: small-caps 24px/1 serif;
+  color: black;
+  background-color: none;
+}
+li form.addTodo {
+  width: 25%;
+  background-color: none;
+}
+li form.deleteAll {
+  background-color: none;
+}
+
+form {
+  cursor: default;
+  padding-left: 0%;
+  font: small-caps 24px/1 serif;
+  color: black;
+  background-color: none;
+}
+form.addTodo {
+  width: 25%;
+  background-color: none;
+}
+form.deleteAll {
+  background-color: none;
+}
+
+/*# sourceMappingURL=output.css.map */

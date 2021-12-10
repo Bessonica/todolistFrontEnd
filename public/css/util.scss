@@ -1,0 +1,117 @@
+@import "util.css";
+
+//переменные
+$colorPurple: #8047B8;
+
+
+// делаем кнопки
+input {
+    transition:0.5s;
+}
+
+.send{
+    //ВОТ ЭТУ ЧАСТЬ МОЖНО ПРЕВРАТИТЬ В НАСЛЕДОВАНИЕ\РАСШИРЕНИЕ
+    //%testVar
+
+    display: block;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 30px;
+    background: $colorPurple;
+
+    &:hover{
+        background: #47B8B8 ;
+        color:white;
+    }
+
+    &:focus{
+        background: #E58B1A ;
+    }
+  }
+
+.deleteAllin {
+    //ВОТ ЭТУ ЧАСТЬ МОЖНО ПРЕВРАТИТЬ В НАСЛЕДОВАНИЕ\РАСШИРЕНИЕ
+    display: block;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 30px;
+    background: $colorPurple;
+    &:hover{
+        background: red;
+        color:white;
+    }
+}
+
+.delete{
+    border: none;
+    padding: 5px 8px;
+    border-radius: 10px;
+    background:  #8047B8;
+
+    &:hover{
+        background: red;
+        color:white;
+    }
+
+}
+
+.move{
+    border: none;
+    padding: 5px 8px;
+    border-radius: 10px;
+    background:  #8047B8;
+
+    &:hover{
+        background: #47B8B8;
+        color:white;
+    }
+}
+//ПРИМЕР КАК СДЕЛАТЬ ВЛОЖЕННОСТЬ.НО ЭТО ПЛОХОЙ ПРИМЕР
+// это лишний код
+// может для списков сделать меньше форму
+// ну тогда можно форму в НАСЛЕДОВАНИЕ/РАСШИРЕНИЕ
+li{
+    
+form {
+    //ВОТ ЭТУ ЧАСТЬ МОЖНО ПРЕВРАТИТЬ В НАСЛЕДОВАНИЕ\РАСШИРЕНИЕ
+    // для h1
+    cursor:default;
+    padding-left: 0%;
+    font: small-caps 24px/1 serif;
+    color: black;
+
+    background-color: none;
+
+    &.addTodo{
+        width:25%;
+        background-color: none;
+    }
+
+    &.deleteAll{
+        background-color: none;
+    }
+}
+
+
+
+}
+
+form {
+    //ВОТ ЭТУ ЧАСТЬ МОЖНО ПРЕВРАТИТЬ В НАСЛЕДОВАНИЕ\РАСШИРЕНИЕ
+    // для h1
+    cursor:default;
+    padding-left: 0%;
+    font: small-caps 24px/1 serif;
+    color: black;
+
+    background-color: none;
+
+    &.addTodo{
+        width:25%;
+        background-color: none;
+    }
+
+    &.deleteAll{
+        background-color: none;
+    }
+}
