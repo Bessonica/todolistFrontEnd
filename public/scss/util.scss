@@ -1,4 +1,4 @@
-@import "util.css";
+@import "../css/util.css";
 @import "wave.scss";
 @import "color.scss";
 
@@ -43,8 +43,7 @@ input {
 }
 
 .send{
-    //ВОТ ЭТУ ЧАСТЬ МОЖНО ПРЕВРАТИТЬ В НАСЛЕДОВАНИЕ\РАСШИРЕНИЕ
-    //%testVar
+
     @extend %bigButton;
 
 
@@ -59,7 +58,6 @@ input {
   }
 
 .deleteAllin {
-    //ВОТ ЭТУ ЧАСТЬ МОЖНО ПРЕВРАТИТЬ В НАСЛЕДОВАНИЕ\РАСШИРЕНИЕ
 
     @extend %bigButton;
 
@@ -89,25 +87,19 @@ input {
         color:white;
     }
 }
-//ПРИМЕР КАК СДЕЛАТЬ ВЛОЖЕННОСТЬ.НО ЭТО ПЛОХОЙ ПРИМЕР
-// это лишний код
-// может для списков сделать меньше форму
-// ну тогда можно форму в НАСЛЕДОВАНИЕ/РАСШИРЕНИЕ
+
+
 li{
-    font: small-caps 18px/1 serif;
+    font: small-caps 15px/1 serif;
 
     form {
-        //ВОТ ЭТУ ЧАСТЬ МОЖНО ПРЕВРАТИТЬ В НАСЛЕДОВАНИЕ\РАСШИРЕНИЕ
-        // для h1
         @extend %addTodoDeleteAll;
-
-    }
+         }
 
 }
 
 form {
-    //ВОТ ЭТУ ЧАСТЬ МОЖНО ПРЕВРАТИТЬ В НАСЛЕДОВАНИЕ\РАСШИРЕНИЕ
-    // для h1
+
     font: small-caps 18px/1 serif;
 
     label{

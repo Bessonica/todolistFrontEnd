@@ -1,4 +1,4 @@
-@import "util.css";
+@import "../css/util.css";
 .waveBackGround {
   position: absolute;
   bottom: 0;
@@ -75,7 +75,7 @@ input {
 }
 
 li {
-  font: small-caps 18px/1 serif;
+  font: small-caps 15px/1 serif;
 }
 form {
   font: small-caps 18px/1 serif;
