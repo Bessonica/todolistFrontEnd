@@ -1,0 +1,177 @@
+ 
+  /*    СВЕРХУ БЭКГРАУНД. ПОМЕНЯТЬ  */
+
+
+  /*    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+  /* SASS 
+  переменные цвета,шрифты
+  
+  разделить на пару файлов
+  в одном фон
+  в другом форма,кнопки 
+  
+  РАСШИРЕНИЯ/НАСЛЕДОВАНИЕ
+
+  вложенность
+  */
+  
+
+  /*  большие кнопки отправить и удалить все
+      поменять их шрифт*/
+      input{
+        transition:0.5s;
+    }
+  /* SASS здесь использовать РАСШИРЕНИЯ/НАСЛЕДОВАНИЕ */
+    input.deleteAllin, input.send{
+      display: block;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 30px;
+      background:#8047B8;
+    }
+    input.deleteAllin:hover{
+      background: red;
+      color:white;
+    }
+    
+  /*  */
+    input.send:hover{
+      background: #47B8B8 ;
+      color:white;
+    }
+    input.send:focus{
+        background: #E58B1A ;
+    }
+  /*  */
+  
+  
+  
+  
+     /*  deleteAll  */
+    /*    */
+  
+    /*  мелкие кнопки дело сделано, удалить вернуть
+    у удалить можно сделать hover красным  */
+    
+  
+    /* SASS здесь использовать РАСШИРЕНИЯ/НАСЛЕДОВАНИЕ 
+    или вложенность
+    
+    input.delete{
+      
+      hover{}
+    }
+  
+    */
+    /* УДАЛИТЬ */
+    /*  */
+    input.delete, input.move{
+      border: none;
+      padding: 5px 8px;
+      border-radius: 10px;
+      background:  #8047B8;
+  
+    }
+    /*  */
+  
+  /*  */
+    input.delete:hover{
+      background: red;
+      color:white;
+    }
+  /*  */
+    /* ВЕРНУТЬ */
+  
+  
+    /*  */
+    input.move:hover{
+      background: #47B8B8;
+      color:white;
+      }
+  /*  */
+  
+  
+  
+   /*  вся форма куда вписывают задачу и приоритет  */
+    form.addTodo{
+      width:25%;
+      background-color: none;
+    }
+  
+     /*  кнопка удалитьВсе  */
+    form.deleteAll{
+        background-color: none;
+    }
+  
+    /*  НАДПИСИ задачи и приоритета
+        дать им красивый 
+        шрифт
+        мож еще рамки? 
+        
+        убрать смену курсора при наведении*/
+    form label, h1{
+        cursor:default;
+        padding-left: 0%;
+        font: small-caps 24px/1 serif;
+        color: black;
+  
+        background-color: none;
+    }
+  
+     /*  родительский клас для инпутов, куда вписывают инфу  */
+    .in{
+        background-color: #47B8B8;
+        border: 2px solid black;
+        padding: 5px 14px;
+        border-radius: 5px;
+    }
+  
+    /*  классы для задачи, и ее приоритета.
+        приоритет меньше размерами задачи  
+        
+        куда вписываем инфу */
+    .big{
+        color:white;
+    }
+  /* SASS переменные */
+    .small{
+        width:25%;
+        color:white;
+    }
+  
+  
+  
+    /*    */
+    /*    */
+  
+    li{
+      font: 15px/1 Lucida Console;
+    }
+  
+
+
+
+
+
+    .waveBackGround {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        z-index: -1;
+    }
+    
+    .waveBackGround svg {
+        position: relative;
+        display: block;
+        width: calc(144% + 1.3px);
+        height: 323px;
+    }
+    
+    .waveBackGround .shape-fill {
+        fill: #47B8B8;
+    }
+    
+     
