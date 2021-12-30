@@ -33,3 +33,4 @@ app.use(express.static('public'));
 app.listen(3000, function(){
   console.log('server is working');
 });
+console.log("just testing");
