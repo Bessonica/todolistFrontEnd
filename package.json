@@ -4,7 +4,8 @@
   "description": "todolist by panfilov dmytro Ip-85 ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint server.js"
   },
   "author": "dmytro panfilov",
   "license": "ISC",
