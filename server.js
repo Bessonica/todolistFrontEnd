@@ -12,7 +12,14 @@
  mongoose.connect('mongodb://localhost/todoMongo', { useNewUrlParser: true, useUnifiedTopology: true  })
  .then(function(){
   console.log('database connected');
-}).catch(console.log('database FAILED'));
+}).catch(function(err){
+  console.log("___  MONGODB ERR  ____");
+  console.log(err);
+  console.log("___  MONGODB ERR  ____");
+});
+
+//console.log('database FAILED')
+
 
 app.use(express.static('public'));
 

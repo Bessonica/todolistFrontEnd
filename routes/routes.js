@@ -30,7 +30,7 @@ router.post("/todos", urlencodedParser, function (req, res) {
 //    console.log(req.body);
 
     todoArr.put(req.body); //  todoArr.pending.push(req.body);
-
+  console.log("ЭТО ROUTER(line 33)")
   console.log(todoArr);
   console.log('КОнец вызова');
   //  res.redirect('/');
