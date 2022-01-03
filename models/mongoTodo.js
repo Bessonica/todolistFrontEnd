@@ -1,6 +1,9 @@
 'use strict'
 
-const mongoose = require('mongoose');
+
+import mongoose from "mongoose";
+
+//const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let todoSchema = new Schema({
@@ -19,4 +22,5 @@ let todoSchema = new Schema({
   id: String,
 });
 
-module.exports = mongoose.model('Todo', todoSchema);
+const modelExp = mongoose.model('Todo', todoSchema);
+export default modelExp;

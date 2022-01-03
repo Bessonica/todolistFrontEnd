@@ -1,16 +1,32 @@
 'use strict'
 
 
-const router = require('express').Router();
+// new code
 
-let todoArr = require('../todoArr.js')
-const bodyParser = require("body-parser");
+import express from "express";
+const router = express.Router();
+
+import todoArr from "../todoArr.js";
+import bodyParser from "body-parser";
 const urlencodedParser = bodyParser.urlencoded({extended: false});
-const Todo = require('../models/mongoTodo.js');
+import Todo from "../models/mongoTodo.js";
+// new code
 
+//   old code -----
+//const router = require('express').Router();
+
+// let todoArr = require('../todoArr.js')
+// const bodyParser = require("body-parser");
+// const urlencodedParser = bodyParser.urlencoded({extended: false});
+// const Todo = require('../models/mongoTodo.js');
+
+//   old code -----
+
+
+//  res.render('index', {
 
 router.get('/', (req, res)=>{
-  res.render('index', {
+  res.render('home', {
     todoArr
   });
 });
@@ -151,4 +167,29 @@ todoArr.over = [];
 });
 
 
-module.exports = router;
+//module.exports = router;
+//export default router;
+
+//                        new code  
+
+
+// router references to fastify
+// route handler functions to be async
+// route handler function arguments from (request, response, next) to (request, reply)
+// response references to reply
+// calls to response.json() to reply.send()
+// instances of next(error) to throw error
+
+export default async function routes(fastify) {
+  
+  //все handlebars файлы должны иметь формат .hbs
+  fastify.get('/', (req, res)=>{
+    res.render('index', {
+      todoArr
+    });
+  });
+
+
+
+
+}
