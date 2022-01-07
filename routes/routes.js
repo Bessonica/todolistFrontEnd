@@ -26,7 +26,7 @@ import Todo from "../models/mongoTodo.js";
 //  res.render('index', {
 
 router.get('/', (req, res)=>{
-  res.render('home', {
+  res.render('index', {
     todoArr
   });
 });
@@ -168,28 +168,5 @@ todoArr.over = [];
 
 
 //module.exports = router;
-//export default router;
+export default router;
 
-//                        new code  
-
-
-// router references to fastify
-// route handler functions to be async
-// route handler function arguments from (request, response, next) to (request, reply)
-// response references to reply
-// calls to response.json() to reply.send()
-// instances of next(error) to throw error
-
-export default async function routes(fastify) {
-  
-  //все handlebars файлы должны иметь формат .hbs
-  fastify.get('/', (req, res)=>{
-    res.render('index', {
-      todoArr
-    });
-  });
-
-
-
-
-}

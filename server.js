@@ -67,11 +67,11 @@ const  app = express();
 //  --------                DATABASE        -------------
 
 // new code
-const fastify = Fastify({
-  logger: true,
-});
+// const fastify = Fastify({
+//   logger: true,
+// });
 
-await fastify.register(ExpressPlugin);
+// await fastify.register(ExpressPlugin);
 
 //new code
 
@@ -83,23 +83,23 @@ await fastify.register(ExpressPlugin);
 
 
  
-fastify.register(PointOfView, {
-  engine: {
-    handlebars: handlebarsa
-  }
-});
+// fastify.register(PointOfView, {
+//   engine: {
+//     handlebars: handlebarsa
+//   }
+// });
 
 
-
+app.use(express.static('public'));
 //    handlebars part
- //app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-
+ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+ app.set('view engine', 'handlebars');
  // !!!! в fastify не поставлен view engine
  //app.set('view engine', 'handlebars');
  
 
  //old
- fastify.use('/', routes);
+ app.use('/', routes);
 
  //     !!!!!!!!!!!!!!!!!!!!
 //  await fastify.register(ExpressPlugin);
@@ -113,7 +113,7 @@ fastify.register(PointOfView, {
 
 
 
- fastify.listen(3000, function(){
+app.listen(3001, function(){
   console.log('server is working');
 });
 console.log("just testing");
