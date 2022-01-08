@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ./ ./routes ./models --ext .js"
+    "lint": "eslint ./ ./routes ./models --ext .js",
+    "prettier": "prettier --write  **/*.js"
   },
   "author": "dmytro panfilov",
   "license": "ISC",
@@ -21,6 +22,8 @@
     "point-of-view": "^5.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.5.0"
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1"
   }
 }
