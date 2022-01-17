@@ -59,48 +59,6 @@ export default async function router(fastify) {
             }
         );
 
-<<<<<<< HEAD
-        //mongodb part
-
-        res.redirect("/");
-    } else {
-        console.log(inputValue);
-        todoArr.over.forEach((element, i) => {
-            if (req.params.id == +element.id) {
-                //  todoArr.put(element);
-                todoArr.over.splice(i, 1);
-            }
-        });
-        //mongoDB part
-        Todo.findOneAndDelete({ id: req.params.id }, function () {
-            console.log("успешно удалена одна задача");
-        });
-
-        //mongodb part
-
-        res.redirect("/");
-    }
-});
-
-//удаляем все данные
-router.post("/deleteAll", urlencodedParser, (req, res) => {
-    Todo.deleteMany({ over: false }, function () {
-        //console.log('удалено на половину');
-    });
-
-    Todo.deleteMany({ over: true }, function () {
-        //console.log('удалено на половину');
-    });
-
-    todoArr.pending = [];
-    todoArr.over = [];
-    //console.log('удаленный массив todoArr \n', todoArr.pending,'\n',todoArr.over);
-    res.redirect("/");
-});
-
-//module.exports = router;
-export default router;
-=======
         res.redirect("/");
     });
 
@@ -161,4 +119,3 @@ export default router;
         res.redirect("/");
     });
 }
->>>>>>> fastifyRework
