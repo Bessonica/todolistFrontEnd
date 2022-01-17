@@ -1,5 +1,4 @@
-'use strict'
-
+"use strict";
 
 //нужно настроить handlebars для фастифай
 // переименовать все handlebars в .hbs\
@@ -8,112 +7,70 @@
 
 //       starting to refactore code with fastify-express
 
-// new code
 import Fastify from "fastify";
-import ExpressPlugin from "fastify-express";
 
-import express from "express";
 
-import exphbs from "express-handlebars";
 
 import PointOfView from "point-of-view";
-import handlebarsa from "handlebars";
-const  app = express();
+import FastifyStatic from "fastify-static";
+import handlebars from "handlebars";
+import FastifyFormbody from "fastify-formbody";
 
+import path from "path";
+const __dirname = path.resolve();
 
-
-
-// new code
-
-
-
-
-// ------------ old code ----
-
-//  const express = require("express");
-//  const  app = express();
-//  const exphbs  = require('express-handlebars');
- 
-// ------------ old code ----
-
-
-// old code ----
-//  const routes = require('./routes/routes.js');
-//  let todoArr = require('./todoArr.js')
-//  const mongoose = require('mongoose');
- // old code ----
-
-
-// new code
- import routes from "./routes/routes.js";
- import todoArr from "./todoArr.js";
- import mongoose from "mongoose";
-// new code
-
+import routes from "./routes/routes.js";
+import mongoose from "mongoose";
 
 //  --------                DATABASE        -------------
- mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 
- mongoose.connect('mongodb://localhost/todoMongo', { useNewUrlParser: true, useUnifiedTopology: true  })
- .then(function(){
-  console.log('database connected');
-}).catch(function(err){
-  console.log("___  MONGODB ERR  ____");
-  console.log(err);
-  console.log("___  MONGODB ERR  ____");
-});
+mongoose
+    .connect("mongodb://localhost/todoMongo", {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(function () {
+        console.log("database connected");
+    })
+    .catch(function (err) {
+        console.log("___  MONGODB ERR  ____");
+        console.log(err);
+        console.log("___  MONGODB ERR  ____");
+    });
 
 //console.log('database FAILED')
 //  --------                DATABASE        -------------
 
-// new code
+
+
 const fastify = Fastify({
-  logger: true,
+    logger: true,
 });
 
-await fastify.register(ExpressPlugin);
+fastify.register(FastifyFormbody);
 
-//new code
-
-
-// везде где fastify, был app
-
-// здесь важно    fastify.register(require('fastify-static')
-//fastify.use(express.static('public'));
-
-
- 
 fastify.register(PointOfView, {
-  engine: {
-    handlebars: handlebarsa
-  }
+    engine: {
+        handlebars: handlebars,
+    },
+    includeViewExtension: true,
+    options: {},
 });
 
-
-
-//    handlebars part
- //app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-
- // !!!! в fastify не поставлен view engine
- //app.set('view engine', 'handlebars');
- 
-
- //old
- fastify.use('/', routes);
-
- //     !!!!!!!!!!!!!!!!!!!!
-//  await fastify.register(ExpressPlugin);
-
-//  fastify.register(routes, { prefix: "/user" });
-
-//  return fastify;
-// }
-
-
-
-
-
- fastify.listen(3000, function(){
-  console.log('server is working');
+fastify.register(FastifyStatic, {
+    root: path.join(__dirname, "/public"),
+    prefix: "/public/", // optional: default '/'
 });
-console.log("just testing");
+
+//fastify.use("/", routes);
+fastify.register(routes, { prefix: "/" });
+
+try {
+    await fastify.listen(3000);
+} catch (error) {
+    fastify.log.error(error);
+    //fastify.log("there is an error ");
+    process.exit(1);
+}
+

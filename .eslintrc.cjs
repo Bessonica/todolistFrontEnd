@@ -1,13 +1,14 @@
 module.exports = {
     "env": {
-        "commonjs": true,
+        "browser": true,
         "es2021": true,
         "node": true
     },
+    "extends": ["eslint:recommended", "prettier"],
     "parserOptions": {
-        "ecmaVersion": 13
+        "ecmaVersion": 13,
+        "sourceType": "module"
     },
     "rules": {
-        "no-console": 1
     }
 };

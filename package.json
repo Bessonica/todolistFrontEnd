@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint server.js"
+    "lint": "eslint ./ ./routes ./models --ext .js",
+    "prettier": "prettier --write  **/*.js"
   },
   "author": "dmytro panfilov",
   "license": "ISC",
@@ -16,11 +17,15 @@
     "express-handlebars": "^3.1.0",
     "fastify": "^3.25.3",
     "fastify-express": "^0.3.3",
+    "fastify-formbody": "^5.2.0",
+    "fastify-static": "^4.5.0",
     "mongoose": "^5.8.2",
     "nodeman": "^1.1.2",
     "point-of-view": "^5.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.5.0"
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1"
   }
 }
