@@ -9,8 +9,6 @@
 
 import Fastify from "fastify";
 
-
-
 import PointOfView from "point-of-view";
 import FastifyStatic from "fastify-static";
 import handlebars from "handlebars";
@@ -42,8 +40,6 @@ mongoose
 //console.log('database FAILED')
 //  --------                DATABASE        -------------
 
-
-
 const fastify = Fastify({
     logger: true,
 });
@@ -73,4 +69,3 @@ try {
     //fastify.log("there is an error ");
     process.exit(1);
 }
-
