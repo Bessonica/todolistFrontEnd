@@ -24,9 +24,6 @@ export default async function router(fastify) {
             //    console.log(req.body);
 
             todoArr.put(req.body); //  todoArr.pending.push(req.body);
-            console.log("ЭТО ROUTER(line 33)");
-            console.log(todoArr);
-            console.log("КОнец вызова");
             //  res.redirect('/');
         }
 
@@ -45,13 +42,11 @@ export default async function router(fastify) {
     });
 
     fastify.post("/pending/:id", (req, res) => {
-        todoArr.pending.forEach((element, i) => {
-            if (req.params.id == element.id) {
-                todoArr.over.push(element);
-                todoArr.pending.splice(i, 1);
-                console.log(todoArr);
-            }
-        });
+
+        let index = todoArr.pending.findIndex((element) => element.id == req.params.id );
+        todoArr.over.push(todoArr.pending[index]);
+        todoArr.pending.splice(index, 1);
+        
 
         console.log("pending\n", todoArr);
 
@@ -70,7 +65,7 @@ export default async function router(fastify) {
     fastify.post("/over/:id", (req, res) => {
         let inputValue = req.body.getBack;
         console.log(inputValue);
-        if (inputValue == "вернуть") {
+        if (inputValue === "вернуть") {
             todoArr.over.forEach((element, i) => {
                 if (req.params.id == +element.id) {
                     todoArr.put(element);
