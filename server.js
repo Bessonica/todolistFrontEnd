@@ -7,39 +7,18 @@
 
 //       starting to refactore code with fastify-express
 
-// new code
-// import Fastify from "fastify";
-// import ExpressPlugin from "fastify-express";
+import Fastify from "fastify";
 
-import express from "express";
+import PointOfView from "point-of-view";
+import FastifyStatic from "fastify-static";
+import handlebars from "handlebars";
+import FastifyFormbody from "fastify-formbody";
 
-import exphbs from "express-handlebars";
+import path from "path";
+const __dirname = path.resolve();
 
-// import PointOfView from "point-of-view";
-// import handlebarsa from "handlebars";
-const app = express();
-
-// new code
-
-// ------------ old code ----
-
-//  const express = require("express");
-//  const  app = express();
-//  const exphbs  = require('express-handlebars');
-
-// ------------ old code ----
-
-// old code ----
-//  const routes = require('./routes/routes.js');
-//  let todoArr = require('./todoArr.js')
-//  const mongoose = require('mongoose');
-// old code ----
-
-// new code
 import routes from "./routes/routes.js";
-// import todoArr from "./todoArr.js";
 import mongoose from "mongoose";
-// new code
 
 //  --------                DATABASE        -------------
 mongoose.Promise = global.Promise;
@@ -61,45 +40,32 @@ mongoose
 //console.log('database FAILED')
 //  --------                DATABASE        -------------
 
-// new code
-// const fastify = Fastify({
-//   logger: true,
-// });
-
-// await fastify.register(ExpressPlugin);
-
-//new code
-
-// везде где fastify, был app
-
-// здесь важно    fastify.register(require('fastify-static')
-//fastify.use(express.static('public'));
-
-// fastify.register(PointOfView, {
-//   engine: {
-//     handlebars: handlebarsa
-//   }
-// });
-
-app.use(express.static("public"));
-//    handlebars part
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-// !!!! в fastify не поставлен view engine
-//app.set('view engine', 'handlebars');
-
-//old
-app.use("/", routes);
-
-//     !!!!!!!!!!!!!!!!!!!!
-//  await fastify.register(ExpressPlugin);
-
-//  fastify.register(routes, { prefix: "/user" });
-
-//  return fastify;
-// }
-
-app.listen(3000, function () {
-    console.log("server is working");
+const fastify = Fastify({
+    logger: true,
 });
-console.log("just testing");
+
+fastify.register(FastifyFormbody);
+
+fastify.register(PointOfView, {
+    engine: {
+        handlebars: handlebars,
+    },
+    includeViewExtension: true,
+    options: {},
+});
+
+fastify.register(FastifyStatic, {
+    root: path.join(__dirname, "/public"),
+    prefix: "/public/", // optional: default '/'
+});
+
+//fastify.use("/", routes);
+fastify.register(routes, { prefix: "/" });
+
+try {
+    await fastify.listen(3000);
+} catch (error) {
+    fastify.log.error(error);
+    //fastify.log("there is an error ");
+    process.exit(1);
+}

@@ -2,125 +2,64 @@
 
 // new code
 
-import express from "express";
-const router = express.Router();
-
 import todoArr from "../todoArr.js";
-import bodyParser from "body-parser";
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
 import Todo from "../models/mongoTodo.js";
-// new code
 
-//   old code -----
-//const router = require('express').Router();
-
-// let todoArr = require('../todoArr.js')
-// const bodyParser = require("body-parser");
-// const urlencodedParser = bodyParser.urlencoded({extended: false});
-// const Todo = require('../models/mongoTodo.js');
-
-//   old code -----
-
-//  res.render('index', {
-
-router.get("/", (req, res) => {
-    res.render("index", {
-        todoArr,
-    });
-});
-
-router.post("/todos", urlencodedParser, function (req, res) {
-    if (!req.body.description || !req.body.prior) {
-        res.redirect("/");
-    } else {
-        let date = new Date();
-        date = +date;
-        //  console.log(date);
-        req.body.id = date;
-        req.body.date = new Date();
-        //    console.log(req.body);
-
-        todoArr.put(req.body); //  todoArr.pending.push(req.body);
-        console.log("ЭТО ROUTER(line 33)");
-        console.log(todoArr);
-        console.log("КОнец вызова");
-        //  res.redirect('/');
-    }
-
-    //mongoDb part
-    let newTodo = new Todo({
-        description: req.body.description,
-        prior: req.body.prior,
-        id: req.body.id,
+export default async function router(fastify) {
+    fastify.get("/", (req, res) => {
+        res.view("/views/index", { todoArr });
     });
 
-    newTodo.save().then(function (result) {
-        console.log("mongoDB DATA \n", result, "\n end of mongoDB DATA");
-    });
+    fastify.post("/todos", (req, res) => {
+        console.log("todos");
 
-    //mongoDb part
-    res.redirect("/");
-});
+        if (!req.body.description || !req.body.prior) {
+            res.redirect("/");
+        } else {
+            let date = new Date();
+            date = +date;
+            //  console.log(date);
+            req.body.id = date;
+            req.body.date = new Date();
+            //    console.log(req.body);
 
-//добавь сохранени задач в локальную память браузера,был простой гайд по написанию тудулиста,где это обьяснялось
-router.post("/pending/:id", (req, res) => {
-    //?.post?
-
-    //console.log(req.params.id);
-
-    todoArr.pending.forEach((element, i) => {
-        if (req.params.id == element.id) {
-            todoArr.over.push(element);
-            todoArr.pending.splice(i, 1);
-            console.log(todoArr);
+            todoArr.put(req.body); //  todoArr.pending.push(req.body);
+            //  res.redirect('/');
         }
-    });
 
-    //mongoDb part
-
-    /*
-Todo.find({ id: req.params.id }).exec().then( function(result){
-  //result.over = true;
-  //let data = JSON.parse(result);
-
-  console.log('mongoDB result \n'+ result);
-  //console.log('Checking data', Todo);
-// result.save();
-}).catch(function(err){console.log('Pending Error',err);});
-*/
-
-    Todo.findOneAndUpdate(
-        { id: req.params.id },
-        { over: true },
-        function (result) {
-            console.log("mongodb result \n", result);
-        }
-    );
-    //mongoDb part
-
-    //переместить задачу из pending  в done и переместить задачу в список сделанного(handlebars файл) (не забудь его сделать)
-    res.redirect("/");
-});
-
-router.post("/over/:id", urlencodedParser, (req, res) => {
-    let inputValue = req.body.getBack;
-    console.log(inputValue);
-    if (inputValue == "вернуть") {
-        todoArr.over.forEach((element, i) => {
-            if (req.params.id == +element.id) {
-                todoArr.put(element);
-                todoArr.over.splice(i, 1);
-            }
+        //mongoDB part
+        let newTodo = new Todo({
+            description: req.body.description,
+            prior: req.body.prior,
+            id: req.body.id,
         });
-        //mongodb part
+
+        newTodo.save().then(function (result) {
+            console.log("mongoDB DATA \n", result, "\n end of mongoDB DATA");
+        });
+
+        res.redirect("/");
+    });
+
+    fastify.post("/pending/:id", (req, res) => {
+
+        let index = todoArr.pending.findIndex((element) => element.id == req.params.id );
+        todoArr.over.push(todoArr.pending[index]);
+        todoArr.pending.splice(index, 1);
+        
+
+        console.log("pending\n", todoArr);
+
+        //mongoDB part
         Todo.findOneAndUpdate(
             { id: req.params.id },
-            { over: false },
+            { over: true },
             function (result) {
                 console.log("mongodb result \n", result);
             }
         );
 
+<<<<<<< HEAD
         //mongodb part
 
         res.redirect("/");
@@ -161,3 +100,65 @@ router.post("/deleteAll", urlencodedParser, (req, res) => {
 
 //module.exports = router;
 export default router;
+=======
+        res.redirect("/");
+    });
+
+    fastify.post("/over/:id", (req, res) => {
+        let inputValue = req.body.getBack;
+        console.log(inputValue);
+        if (inputValue === "вернуть") {
+            todoArr.over.forEach((element, i) => {
+                if (req.params.id == +element.id) {
+                    todoArr.put(element);
+                    todoArr.over.splice(i, 1);
+                }
+            });
+
+            //mongoDB part
+            Todo.findOneAndUpdate(
+                { id: req.params.id },
+                { over: false },
+                function (result) {
+                    console.log("mongodb result \n", result);
+                }
+            );
+
+            res.redirect("/");
+        } else {
+            console.log(inputValue);
+            todoArr.over.forEach((element, i) => {
+                if (req.params.id == +element.id) {
+                    //  todoArr.put(element);
+                    todoArr.over.splice(i, 1);
+                }
+            });
+
+            //mongoDB part
+            Todo.findOneAndDelete({ id: req.params.id }, function () {
+                console.log("успешно удалена одна задача");
+            });
+
+            res.redirect("/");
+        }
+
+        console.log("___over___\n");
+        console.log(todoArr);
+    });
+
+    fastify.post("/deleteAll", (req, res) => {
+        //mongoDB part
+        Todo.deleteMany({ over: false }, function () {
+            //console.log('удалено на половину');
+        });
+
+        Todo.deleteMany({ over: true }, function () {
+            //console.log('удалено на половину');
+        });
+        todoArr.pending = [];
+        todoArr.over = [];
+        console.log("deleteAll\n", todoArr);
+        res.redirect("/");
+    });
+}
+>>>>>>> fastifyRework
