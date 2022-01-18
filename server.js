@@ -40,7 +40,7 @@ mongoose
         console.log("___  MONGODB ERR  ____");
     });
 
-console.log('database FAILED nope')
+
 //  --------                DATABASE        -------------
 
 const PORT = process.env.PORT || 3000 ;

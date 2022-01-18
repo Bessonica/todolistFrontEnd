@@ -13,8 +13,8 @@
       min-height: 100%;
   }
   body{
-    background-image: radial-gradient(mintcream 0%, gray 100%);
-      background-color: green;
+    background-image: radial-gradient(mintcream 0%, green 100%);
+      background-color: white;
       font-family: "Trebuchet MS";
     user-select: none;
   }
