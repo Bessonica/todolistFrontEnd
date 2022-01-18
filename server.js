@@ -40,9 +40,9 @@ import mongoose from "mongoose";
 // //console.log('database FAILED')
 //  --------                DATABASE        -------------
 
-const fastify = Fastify({
-    logger: true,
-});
+const PORT = process.env.PORT || 3000 ;
+
+const fastify = Fastify({});
 
 fastify.register(FastifyFormbody);
 
@@ -62,10 +62,17 @@ fastify.register(FastifyStatic, {
 //fastify.use("/", routes);
 fastify.register(routes, { prefix: "/" });
 
-try {
-    await fastify.listen(3000);
-} catch (error) {
-    fastify.log.error(error);
-    //fastify.log("there is an error ");
-    process.exit(1);
-}
+fastify.listen(PORT, (error)=>{
+    if (error != null){
+        console.log(error);
+    }
+    
+});
+
+// try {
+//     await fastify.listen(PORT);
+// } catch (error) {
+//     fastify.log.error(error);
+//     //fastify.log("there is an error ");
+//     process.exit(1);
+// }
