@@ -41,7 +41,7 @@ import mongoose from "mongoose";
 //  --------                DATABASE        -------------
 
 const PORT = process.env.PORT || 3000 ;
-
+const address = "0.0.0.0";
 const fastify = Fastify({});
 
 fastify.register(FastifyFormbody);
@@ -62,7 +62,7 @@ fastify.register(FastifyStatic, {
 //fastify.use("/", routes);
 fastify.register(routes, { prefix: "/" });
 
-fastify.listen(PORT, (error)=>{
+fastify.listen(PORT, address, (error)=>{
     if (error != null){
         console.log(error);
     }
