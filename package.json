@@ -1,8 +1,8 @@
 {
   "name": "panfilovtodov1",
   "version": "1.0.0",
-  "description": "todolist by panfilov dmytro Ip-85 ",
-  "main": "index.js",
+  "description": "todolist by panfilov dmytro Ip-95 ",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "start":"node server.js",
