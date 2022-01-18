@@ -72,10 +72,4 @@ fastify.listen(PORT, address, (error)=>{
     
 });
 
-// try {
-//     await fastify.listen(PORT);
-// } catch (error) {
-//     fastify.log.error(error);
-//     //fastify.log("there is an error ");
-//     process.exit(1);
-// }
+
