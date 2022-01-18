@@ -19,25 +19,28 @@ const __dirname = path.resolve();
 
 import routes from "./routes/routes.js";
 import mongoose from "mongoose";
+import 'dotenv/config'
 
+const mongoUri = process.env.MONGODB_URI ;
+console.log("URI", mongoUri);
 //  --------                DATABASE        -------------
-// mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 
-// mongoose
-//     .connect("mongodb://localhost/todoMongo", {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//     })
-//     .then(function () {
-//         console.log("database connected");
-//     })
-//     .catch(function (err) {
-//         console.log("___  MONGODB ERR  ____");
-//         console.log(err);
-//         console.log("___  MONGODB ERR  ____");
-//     });
+mongoose
+    .connect(mongoUri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(function () {
+        console.log("database connected");
+    })
+    .catch(function (err) {
+        console.log("___  MONGODB ERR  ____");
+        console.log(err);
+        console.log("___  MONGODB ERR  ____");
+    });
 
-// //console.log('database FAILED')
+console.log('database FAILED nope')
 //  --------                DATABASE        -------------
 
 const PORT = process.env.PORT || 3000 ;

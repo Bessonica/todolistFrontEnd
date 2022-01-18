@@ -27,16 +27,16 @@ export default async function router(fastify) {
             //  res.redirect('/');
         }
 
-        // //mongoDB part
-        // let newTodo = new Todo({
-        //     description: req.body.description,
-        //     prior: req.body.prior,
-        //     id: req.body.id,
-        // });
+        //mongoDB part
+        let newTodo = new Todo({
+            description: req.body.description,
+            prior: req.body.prior,
+            id: req.body.id,
+        });
 
-        // newTodo.save().then(function (result) {
-        //     console.log("mongoDB DATA \n", result, "\n end of mongoDB DATA");
-        // });
+        newTodo.save().then(function (result) {
+            console.log("mongoDB DATA \n", result, "\n end of mongoDB DATA");
+        });
 
         res.redirect("/");
     });
@@ -51,13 +51,13 @@ export default async function router(fastify) {
         console.log("pending\n", todoArr);
 
         // //mongoDB part
-        // Todo.findOneAndUpdate(
-        //     { id: req.params.id },
-        //     { over: true },
-        //     function (result) {
-        //         console.log("mongodb result \n", result);
-        //     }
-        // );
+        Todo.findOneAndUpdate(
+            { id: req.params.id },
+            { over: true },
+            function (result) {
+                console.log("mongodb result \n", result);
+            }
+        );
 
         res.redirect("/");
     });
@@ -74,13 +74,13 @@ export default async function router(fastify) {
             });
 
             // //mongoDB part
-            // Todo.findOneAndUpdate(
-            //     { id: req.params.id },
-            //     { over: false },
-            //     function (result) {
-            //         console.log("mongodb result \n", result);
-            //     }
-            // );
+            Todo.findOneAndUpdate(
+                { id: req.params.id },
+                { over: false },
+                function (result) {
+                    console.log("mongodb result \n", result);
+                }
+            );
 
             res.redirect("/");
         } else {
@@ -93,9 +93,9 @@ export default async function router(fastify) {
             });
 
             // //mongoDB part
-            // Todo.findOneAndDelete({ id: req.params.id }, function () {
-            //     console.log("успешно удалена одна задача");
-            // });
+            Todo.findOneAndDelete({ id: req.params.id }, function () {
+                console.log("успешно удалена одна задача");
+            });
 
             res.redirect("/");
         }
@@ -106,13 +106,13 @@ export default async function router(fastify) {
 
     fastify.post("/deleteAll", (req, res) => {
         // //mongoDB part
-        // Todo.deleteMany({ over: false }, function () {
-        //     //console.log('удалено на половину');
-        // });
+        Todo.deleteMany({ over: false }, function () {
+            //console.log('удалено на половину');
+        });
 
-        // Todo.deleteMany({ over: true }, function () {
-        //     //console.log('удалено на половину');
-        // });
+        Todo.deleteMany({ over: true }, function () {
+            //console.log('удалено на половину');
+        });
         todoArr.pending = [];
         todoArr.over = [];
         console.log("deleteAll\n", todoArr);
