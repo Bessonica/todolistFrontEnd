@@ -19,29 +19,32 @@ const __dirname = path.resolve();
 
 import routes from "./routes/routes.js";
 import mongoose from "mongoose";
+import 'dotenv/config'
 
+const mongoUri = process.env.MONGODB_URI ;
+console.log("URI", mongoUri);
 //  --------                DATABASE        -------------
-// mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 
-// mongoose
-//     .connect("mongodb://localhost/todoMongo", {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//     })
-//     .then(function () {
-//         console.log("database connected");
-//     })
-//     .catch(function (err) {
-//         console.log("___  MONGODB ERR  ____");
-//         console.log(err);
-//         console.log("___  MONGODB ERR  ____");
-//     });
+mongoose
+    .connect(mongoUri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(function () {
+        console.log("database connected");
+    })
+    .catch(function (err) {
+        console.log("___  MONGODB ERR  ____");
+        console.log(err);
+        console.log("___  MONGODB ERR  ____");
+    });
 
-// //console.log('database FAILED')
+console.log('database FAILED nope')
 //  --------                DATABASE        -------------
 
 const PORT = process.env.PORT || 3000 ;
-
+const address = "0.0.0.0";
 const fastify = Fastify({});
 
 fastify.register(FastifyFormbody);
@@ -62,17 +65,11 @@ fastify.register(FastifyStatic, {
 //fastify.use("/", routes);
 fastify.register(routes, { prefix: "/" });
 
-fastify.listen(PORT, (error)=>{
+fastify.listen(PORT, address, (error)=>{
     if (error != null){
         console.log(error);
     }
     
 });
 
-// try {
-//     await fastify.listen(PORT);
-// } catch (error) {
-//     fastify.log.error(error);
-//     //fastify.log("there is an error ");
-//     process.exit(1);
-// }
+
