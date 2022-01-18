@@ -21,23 +21,23 @@ import routes from "./routes/routes.js";
 import mongoose from "mongoose";
 
 //  --------                DATABASE        -------------
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
 
-mongoose
-    .connect("mongodb://localhost/todoMongo", {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    .then(function () {
-        console.log("database connected");
-    })
-    .catch(function (err) {
-        console.log("___  MONGODB ERR  ____");
-        console.log(err);
-        console.log("___  MONGODB ERR  ____");
-    });
+// mongoose
+//     .connect("mongodb://localhost/todoMongo", {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//     })
+//     .then(function () {
+//         console.log("database connected");
+//     })
+//     .catch(function (err) {
+//         console.log("___  MONGODB ERR  ____");
+//         console.log(err);
+//         console.log("___  MONGODB ERR  ____");
+//     });
 
-//console.log('database FAILED')
+// //console.log('database FAILED')
 //  --------                DATABASE        -------------
 
 const fastify = Fastify({
