@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "build":"node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./ ./routes ./models --ext .js",
     "prettier": "prettier --write  **/*.js"
