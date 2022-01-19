@@ -1,26 +1,23 @@
-*{
+* {
     margin: 0;
     padding: 0;
     outline: none;
     border: none;
-      box-sizing: border-box;
-  }
-  *:before,
-  *:after{
-      box-sizing: border-box;
-  }
-  html,body{
-      min-height: 100%;
-  }
-  body{
+    box-sizing: border-box;
+}
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+html,
+body {
+    min-height: 100%;
+}
+body {
     background-image: radial-gradient(mintcream 0%, gray 100%);
-      background-color: white;
-      font-family: "Trebuchet MS";
+    background-color: white;
+    font-family: "Trebuchet MS";
     user-select: none;
-  }
-
-  /* волна  */
-
-
+}
 
 

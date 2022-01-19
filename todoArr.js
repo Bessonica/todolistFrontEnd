@@ -9,5 +9,4 @@ let todoArr = {
     },
 };
 
-
 export default todoArr;

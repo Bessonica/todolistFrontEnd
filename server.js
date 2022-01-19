@@ -1,7 +1,5 @@
 "use strict";
 
-
-
 import Fastify from "fastify";
 
 import PointOfView from "point-of-view";
@@ -14,15 +12,14 @@ const __dirname = path.resolve();
 
 import routes from "./routes/routes.js";
 import mongoose from "mongoose";
-import 'dotenv/config'
+import "dotenv/config";
 
-const mongoUri = process.env.MONGODB_URI ;
-console.log("URI", mongoUri);
+const mongoUri = process.env.MONGODB_URI;
+
 //  --------                DATABASE        -------------
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
 
-mongoose
-    .connect(mongoUri, {
+mongoose.connect(mongoUri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
@@ -35,10 +32,9 @@ mongoose
         console.log("___  MONGODB ERR  ____");
     });
 
-
 //  --------                DATABASE        -------------
 
-const PORT = process.env.PORT || 3000 ;
+const PORT = process.env.PORT || 3000;
 const address = "0.0.0.0";
 const fastify = Fastify({});
 
@@ -62,11 +58,11 @@ fastify.register(routes, { prefix: "/" });
 
 const start = async () => {
     try {
-      await fastify.listen(PORT, address);
+        await fastify.listen(PORT, address);
     } catch (err) {
-      fastify.log.error(err);
-      process.exit(1);
+        fastify.log.error(err);
+        process.exit(1);
     }
-  }
+};
 
-  start();
+start();

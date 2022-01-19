@@ -8,7 +8,9 @@
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./ ./routes ./models --ext .js",
-    "prettier": "prettier --write  **/*.js"
+    "prettier": "prettier --write  **/*.js **/*.hbs **/*.html **/*.css",
+    "prettier:ignore": "prettier --ignore-path /.gitignore",
+    "prettier:check": "prettier --check  **/*.js **/*.hbs **/*.html **/*.css"
   },
   "author": "dmytro panfilov",
   "license": "ISC",
@@ -21,7 +23,7 @@
     "fastify-formbody": "^5.2.0",
     "fastify-static": "^4.5.0",
     "handlebars": "^4.7.7",
-    "mongoose": "^5.8.2",
+    "mongoose": "6.1.7",
     "nodeman": "^1.1.2",
     "point-of-view": "^5.0.0"
   },

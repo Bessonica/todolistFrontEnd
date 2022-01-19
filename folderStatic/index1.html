@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Регистрация</title>
-    <meta charset="utf-8" />
-</head>
-<body>
-    <h1>Давай проведем день продуктивно!</h1>
-    <form action="/todos" method="post">
-        <label>Задача</label><br>
-        <input type="text" name="description" /><br><br>
-        <label>приоритет</label><br>
-        <input type="number" name="prior" /><br><br>
-        <input type="submit" value="Отправить"/>
-<ul>
-  <li> {{description}}</li>
-</ul>
-
-
-
-    </form>
-
-
-
-</body>
+    <head>
+        <title>Регистрация</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <h1>Давай проведем день продуктивно!</h1>
+        <form action="/todos" method="post">
+            <label>Задача</label><br />
+            <input type="text" name="description" /><br /><br />
+            <label>приоритет</label><br />
+            <input type="number" name="prior" /><br /><br />
+            <input type="submit" value="Отправить" />
+            <ul>
+                <li>{{description}}</li>
+            </ul>
+        </form>
+    </body>
 </html>
