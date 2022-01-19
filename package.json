@@ -8,9 +8,8 @@
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./ ./routes ./models --ext .js",
-    "prettier": "prettier --write  **/*.js **/*.hbs **/*.html **/*.css",
-    "prettier:ignore": "prettier --ignore-path /.gitignore",
-    "prettier:check": "prettier --check  **/*.js **/*.hbs **/*.html **/*.css"
+    "prettier": "prettier --write  **/*.js **/*.hbs **/*.html **/*.css --ignore-path .gitignore",
+    "prettier:check": "prettier --check --debug-check  **/*.js **/*.hbs **/*.html **/*.css --ignore-path .gitignore"
   },
   "author": "dmytro panfilov",
   "license": "ISC",
@@ -30,6 +29,8 @@
   "devDependencies": {
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-sonarjs": "^0.11.0",
     "prettier": "^2.5.1"
   }
 }

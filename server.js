@@ -16,9 +16,6 @@ import "dotenv/config";
 
 const mongoUri = process.env.MONGODB_URI;
 
-//  --------                DATABASE        -------------
-// mongoose.Promise = global.Promise;
-
 mongoose.connect(mongoUri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -31,8 +28,6 @@ mongoose.connect(mongoUri, {
         console.log(err);
         console.log("___  MONGODB ERR  ____");
     });
-
-//  --------                DATABASE        -------------
 
 const PORT = process.env.PORT || 3000;
 const address = "0.0.0.0";
