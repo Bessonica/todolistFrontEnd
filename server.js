@@ -1,11 +1,6 @@
 "use strict";
 
-//нужно настроить handlebars для фастифай
-// переименовать все handlebars в .hbs\
-//fastify point of view
-// после всего посатвь fastify helmet
 
-//       starting to refactore code with fastify-express
 
 import Fastify from "fastify";
 
@@ -65,11 +60,13 @@ fastify.register(FastifyStatic, {
 //fastify.use("/", routes);
 fastify.register(routes, { prefix: "/" });
 
-fastify.listen(PORT, address, (error)=>{
-    if (error != null){
-        console.log(error);
+const start = async () => {
+    try {
+      await fastify.listen(PORT, address);
+    } catch (err) {
+      fastify.log.error(err);
+      process.exit(1);
     }
-    
-});
+  }
 
-
+  start();

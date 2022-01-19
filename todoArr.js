@@ -9,9 +9,5 @@ let todoArr = {
     },
 };
 
-/*
-todoArr.pending.length= 30;
-todoArr.over.length = 30;
-*/
-//module.exports = todoArr;
+
 export default todoArr;

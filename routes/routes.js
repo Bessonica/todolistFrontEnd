@@ -1,6 +1,5 @@
 "use strict";
 
-// new code
 
 import todoArr from "../todoArr.js";
 import Todo from "../models/mongoTodo.js";
@@ -18,13 +17,11 @@ export default async function router(fastify) {
         } else {
             let date = new Date();
             date = +date;
-            //  console.log(date);
             req.body.id = date;
             req.body.date = new Date();
-            //    console.log(req.body);
-
-            todoArr.put(req.body); //  todoArr.pending.push(req.body);
-            //  res.redirect('/');
+            
+            todoArr.put(req.body); 
+          
         }
 
         //mongoDB part
@@ -53,10 +50,7 @@ export default async function router(fastify) {
         // //mongoDB part
         Todo.findOneAndUpdate(
             { id: req.params.id },
-            { over: true },
-            function (result) {
-                console.log("mongodb result \n", result);
-            }
+            { over: true }
         );
 
         res.redirect("/");
@@ -66,31 +60,23 @@ export default async function router(fastify) {
         let inputValue = req.body.getBack;
         console.log(inputValue);
         if (inputValue === "вернуть") {
-            todoArr.over.forEach((element, i) => {
-                if (req.params.id == +element.id) {
-                    todoArr.put(element);
-                    todoArr.over.splice(i, 1);
-                }
-            });
+
+            let index = todoArr.over.findIndex((element) => +element.id == req.params.id );
+            todoArr.put(todoArr.over[index]);
+            todoArr.over.splice(index, 1);
 
             // //mongoDB part
             Todo.findOneAndUpdate(
                 { id: req.params.id },
-                { over: false },
-                function (result) {
-                    console.log("mongodb result \n", result);
-                }
+                { over: false }
             );
 
             res.redirect("/");
         } else {
             console.log(inputValue);
-            todoArr.over.forEach((element, i) => {
-                if (req.params.id == +element.id) {
-                    //  todoArr.put(element);
-                    todoArr.over.splice(i, 1);
-                }
-            });
+
+            let index = todoArr.over.findIndex((element) => +element.id == req.params.id );
+            todoArr.over.splice(index, 1);
 
             // //mongoDB part
             Todo.findOneAndDelete({ id: req.params.id }, function () {
