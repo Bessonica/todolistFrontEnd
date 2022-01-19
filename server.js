@@ -16,7 +16,8 @@ import "dotenv/config";
 
 const mongoUri = process.env.MONGODB_URI;
 
-mongoose.connect(mongoUri, {
+mongoose
+    .connect(mongoUri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
