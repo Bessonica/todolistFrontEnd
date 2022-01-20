@@ -1,39 +1,72 @@
 import todoArr from "../todoArr.js";
 import Todo from "../models/mongoTodo.js";
+// import Sanitize from "sanitize";
+// const sanitizer = Sanitize();
+// import sanitizer from "string-sanitizer";
+
+const todoJob = {
+    type: "object",
+    properties: {
+        description: { type: "string", maxLength: 50 },
+        id: { type: "string" },
+        over: { type: "boolean" },
+        prior: { type: "integer", maximum: 100 },
+    },
+};
 
 export default async function router(fastify) {
     fastify.get("/", (req, res) => {
         res.view("/views/index", { todoArr });
     });
 
-    fastify.post("/todos", (req, res) => {
-        console.log("todos");
+    fastify.post(
+        "/todos",
+        {
+            schema: {
+                // Refence the schema here
+                body: todoJob,
+            },
+        },
+        (req, res) => {
+            console.log("todos");
 
-        if (!req.body.description || !req.body.prior) {
+            if (!req.body.description || !req.body.prior) {
+                res.redirect("/");
+                return;
+            }
+
+            let date = new Date();
+            date = +date;
+            req.body.id = date;
+            req.body.date = new Date();
+
+            todoArr.put(req.body);
+
+            //mongoDB part req.queryString
+            // let descr = sanitizer.value(req.body.description, 'string');
+
+            //недостаточно нам нужно изменить еще req.body ??
+            // let descriptionSanitized = sanitizer.sanitize.addDash(
+            //     req.body.description
+            // );
+
+            let newTodo = new Todo({
+                description: req.body.description,
+                prior: req.body.prior,
+                id: req.body.id,
+            });
+
+            newTodo.save().then(function (result) {
+                console.log(
+                    "mongoDB DATA \n",
+                    result,
+                    "\n end of mongoDB DATA"
+                );
+            });
+
             res.redirect("/");
-            return;
-        } 
-       
-        let date = new Date();
-        date = +date;
-        req.body.id = date;
-        req.body.date = new Date();
-
-        todoArr.put(req.body);
-
-        //mongoDB part
-        let newTodo = new Todo({
-            description: req.body.description,
-            prior: req.body.prior,
-            id: req.body.id,
-        });
-
-        newTodo.save().then(function (result) {
-            console.log("mongoDB DATA \n", result, "\n end of mongoDB DATA");
-        });
-
-        res.redirect("/");
-    });
+        }
+    );
 
     fastify.post("/pending/:id", (req, res) => {
         let index = todoArr.pending.findIndex(

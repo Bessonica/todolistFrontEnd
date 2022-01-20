@@ -1,6 +1,7 @@
 import Fastify from "fastify";
 import PointOfView from "point-of-view";
 import FastifyStatic from "fastify-static";
+// import FastifySanitize from "fastify-casl";
 import handlebars from "handlebars";
 import FastifyFormbody from "fastify-formbody";
 import path from "path";
@@ -43,6 +44,17 @@ fastify.register(FastifyStatic, {
     root: path.join(__dirname, "/public"),
     prefix: "/public/", // optional: default '/'
 });
+
+// const simpleRule = [
+//     {
+//         name: "Post",
+//         actions: {},
+//     },
+// ];
+
+// fastify.register(FastifySanitize, {
+//     assets: simpleRule,
+// });
 
 //fastify.use("/", routes);
 fastify.register(routes, { prefix: "/" });
