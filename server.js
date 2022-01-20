@@ -1,19 +1,14 @@
-"use strict";
-
 import Fastify from "fastify";
-
 import PointOfView from "point-of-view";
 import FastifyStatic from "fastify-static";
 import handlebars from "handlebars";
 import FastifyFormbody from "fastify-formbody";
-
 import path from "path";
-const __dirname = path.resolve();
-
 import routes from "./routes/routes.js";
 import mongoose from "mongoose";
 import "dotenv/config";
 
+const __dirname = path.resolve();
 const mongoUri = process.env.MONGODB_URI;
 
 mongoose

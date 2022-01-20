@@ -1,5 +1,3 @@
-"use strict";
-
 import todoArr from "../todoArr.js";
 import Todo from "../models/mongoTodo.js";
 
