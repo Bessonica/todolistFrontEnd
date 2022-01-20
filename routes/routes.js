@@ -11,14 +11,15 @@ export default async function router(fastify) {
 
         if (!req.body.description || !req.body.prior) {
             res.redirect("/");
-        } else {
-            let date = new Date();
-            date = +date;
-            req.body.id = date;
-            req.body.date = new Date();
+            return;
+        } 
+       
+        let date = new Date();
+        date = +date;
+        req.body.id = date;
+        req.body.date = new Date();
 
-            todoArr.put(req.body);
-        }
+        todoArr.put(req.body);
 
         //mongoDB part
         let newTodo = new Todo({
