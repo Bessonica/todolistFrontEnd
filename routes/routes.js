@@ -29,10 +29,9 @@ export default async function router(fastify) {
         console.log("todos");
         let dataSanitized = req.body;
 
+        //show that form input is not accepted
         if (req.validationError) {
-            // res.code(400).send(req.validationError);
-            res.redirect("/");
-            return;
+            res.code(400).send(req.validationError);
         }
 
         dataSanitized.description = Sanitizer.sanitize(
