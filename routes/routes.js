@@ -28,11 +28,11 @@ export default async function router(fastify) {
     fastify.post("/todos", todoJobSchema, (req, res) => {
         console.log("todos");
         let dataSanitized = req.body;
-        window.alert("MISTAKE");
 
         //show that form input is not accepted
         if (req.validationError) {
             res.code(400).send(req.validationError);
+            return;
         }
 
         dataSanitized.description = Sanitizer.sanitize(
