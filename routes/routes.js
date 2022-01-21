@@ -8,7 +8,7 @@ const todoJobSchema = {
         body: {
             type: "object",
             properties: {
-                description: { type: "string", maxLength: 50 },
+                description: { type: "string", maxLength: 20 },
                 id: { type: "string" },
                 over: { type: "boolean" },
                 prior: { type: "integer", maximum: 100 },
@@ -17,6 +17,7 @@ const todoJobSchema = {
             additionalProperties: false,
         },
     },
+    attachValidation: true,
 };
 
 export default async function router(fastify) {
@@ -27,6 +28,12 @@ export default async function router(fastify) {
     fastify.post("/todos", todoJobSchema, (req, res) => {
         console.log("todos");
         let dataSanitized = req.body;
+
+        if (req.validationError) {
+            // res.code(400).send(req.validationError);
+            res.redirect("/");
+            return;
+        }
 
         dataSanitized.description = Sanitizer.sanitize(
             dataSanitized.description
