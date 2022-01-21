@@ -4,6 +4,8 @@ import Todo from "../models/mongoTodo.js";
 // const sanitizer = Sanitize();
 // import sanitizer from "string-sanitizer";
 
+import Sanitizer from "sanitizer";
+
 const todoJob = {
     type: "object",
     properties: {
@@ -29,31 +31,33 @@ export default async function router(fastify) {
         },
         (req, res) => {
             console.log("todos");
+            let dataSanitized = req.body;
 
-            if (!req.body.description || !req.body.prior) {
+            dataSanitized.description = Sanitizer.sanitize(
+                dataSanitized.description
+            );
+            dataSanitized.prior = Sanitizer.sanitize(dataSanitized.prior);
+
+            if (!dataSanitized.description || !dataSanitized.prior) {
                 res.redirect("/");
                 return;
             }
 
             let date = new Date();
             date = +date;
-            req.body.id = date;
-            req.body.date = new Date();
+            dataSanitized.id = date;
+            dataSanitized.date = new Date();
 
-            todoArr.put(req.body);
+            console.log("BODY \n", dataSanitized);
+            // console.log(typeof(req.body));
 
-            //mongoDB part req.queryString
-            // let descr = sanitizer.value(req.body.description, 'string');
-
-            //недостаточно нам нужно изменить еще req.body ??
-            // let descriptionSanitized = sanitizer.sanitize.addDash(
-            //     req.body.description
-            // );
+            todoArr.put(dataSanitized);
+            console.log("dataSanitized arr \n", dataSanitized);
 
             let newTodo = new Todo({
-                description: req.body.description,
-                prior: req.body.prior,
-                id: req.body.id,
+                description: dataSanitized.description,
+                prior: dataSanitized.prior,
+                id: dataSanitized.id,
             });
 
             newTodo.save().then(function (result) {
@@ -85,7 +89,7 @@ export default async function router(fastify) {
 
     fastify.post("/over/:id", (req, res) => {
         let inputValue = req.body.getBack;
-        console.log(inputValue);
+        console.log("input value \n", inputValue);
         if (inputValue === "вернуть") {
             let index = todoArr.over.findIndex(
                 (element) => +element.id == req.params.id
@@ -97,21 +101,22 @@ export default async function router(fastify) {
             Todo.findOneAndUpdate({ id: req.params.id }, { over: false });
 
             res.redirect("/");
-        } else {
-            console.log(inputValue);
-
-            let index = todoArr.over.findIndex(
-                (element) => +element.id == req.params.id
-            );
-            todoArr.over.splice(index, 1);
-
-            // //mongoDB part
-            Todo.findOneAndDelete({ id: req.params.id }, function () {
-                console.log("успешно удалена одна задача");
-            });
-
-            res.redirect("/");
+            return;
         }
+
+        console.log(inputValue);
+
+        let index = todoArr.over.findIndex(
+            (element) => +element.id == req.params.id
+        );
+        todoArr.over.splice(index, 1);
+
+        // //mongoDB part
+        Todo.findOneAndDelete({ id: req.params.id }, function () {
+            console.log("успешно удалена одна задача");
+        });
+
+        res.redirect("/");
 
         console.log("___over___\n");
         console.log(todoArr);
