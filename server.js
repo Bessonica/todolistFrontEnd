@@ -1,12 +1,12 @@
-import Fastify from "fastify";
-import PointOfView from "point-of-view";
-import FastifyStatic from "fastify-static";
-import handlebars from "handlebars";
-import FastifyFormbody from "fastify-formbody";
-import path from "path";
-import routes from "./routes/routes.js";
-import mongoose from "mongoose";
-import "dotenv/config";
+import Fastify from 'fastify';
+import PointOfView from 'point-of-view';
+import FastifyStatic from 'fastify-static';
+import handlebars from 'handlebars';
+import FastifyFormbody from 'fastify-formbody';
+import path from 'path';
+import routes from './routes/routes.js';
+import mongoose from 'mongoose';
+import 'dotenv/config';
 
 const __dirname = path.resolve();
 const mongoUri = process.env.MONGODB_URI;
@@ -16,32 +16,32 @@ mongoose
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
-    .then(function () {
-        console.log("database connected");
+    .then(() => {
+        console.log('database connected');
     })
-    .catch(function (err) {
-        console.log("___  MONGODB ERR  ____");
+    .catch((err) => {
+        console.log('___  MONGODB ERR  ____');
         console.log(err);
-        console.log("___  MONGODB ERR  ____");
+        console.log('___  MONGODB ERR  ____');
     });
 
 const PORT = process.env.PORT || 3000;
-const address = "0.0.0.0";
+const address = '0.0.0.0';
 const fastify = Fastify({});
 
 fastify.register(FastifyFormbody);
 
 fastify.register(PointOfView, {
     engine: {
-        handlebars: handlebars,
+        handlebars,
     },
     includeViewExtension: true,
     options: {},
 });
 
 fastify.register(FastifyStatic, {
-    root: path.join(__dirname, "/public"),
-    prefix: "/public/", // optional: default '/'
+    root: path.join(__dirname, '/public'),
+    prefix: '/public/', // optional: default '/'
 });
 
 // const simpleRule = [
@@ -56,7 +56,7 @@ fastify.register(FastifyStatic, {
 // });
 
 //fastify.use("/", routes);
-fastify.register(routes, { prefix: "/" });
+fastify.register(routes, { prefix: '/' });
 
 const start = async () => {
     try {

@@ -2,42 +2,42 @@
     <head>
 
         <title>Регистрация</title>
-        <meta charset="utf-8" />
+        <meta charset='utf-8' />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta http-equiv='X-UA-Compatible' content='ie=edge' />
         <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous"
+            rel='stylesheet'
+            href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+            integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
+            crossorigin='anonymous'
         />
-        <link rel="stylesheet" href="./public/css/output.css" />
+        <link rel='stylesheet' href='./public/css/output.css' />
 
     </head>
     <body>
 
         <h1>Давай проведем день продуктивно!</h1>
-        <form class="addTodo" action="/todos" method="post">
+        <form class='addTodo' action='/todos' method='post'>
             <label>Задача</label><br />
-            <input class="in big" type="text" name="description" /><br /><br />
+            <input class='in big' type='text' name='description' /><br /><br />
             <label>Приоритет</label><br />
-            <input class="in small" type="number" name="prior" min="1" /><br
+            <input class='in small' type='number' name='prior' min='1' /><br
             /><br />
-            <input class="send" type="submit" value="Отправить" />
+            <input class='send' type='submit' value='Отправить' />
         </form>
         <h2>В процессе</h2>
         <ul>
             {{#each todoArr.pending}}
                 <li>
-                    <form action="/pending/{{this.id}}" method="post">
+                    <form action='/pending/{{this.id}}' method='post'>
                         {{description}}
                         -
                         {{prior}}
                         <input
-                            class="move"
-                            type="submit"
-                            value="дело сделано"
+                            class='move'
+                            type='submit'
+                            value='дело сделано'
                         />
                     </form>
                 </li>
@@ -50,21 +50,21 @@
         <ul>
             {{#each todoArr.over}}
                 <li>
-                    <form action="/over/{{this.id}}" method="post" id="over">
+                    <form action='/over/{{this.id}}' method='post' id='over'>
                         {{description}}
                         <input
-                            class="delete"
-                            type="submit"
-                            value="удалить"
-                            name="delete"
-                            value="delete"
+                            class='delete'
+                            type='submit'
+                            value='удалить'
+                            name='delete'
+                            value='delete'
                         />
                         <input
-                            class="move"
-                            type="submit"
-                            value="вернуть"
-                            name="getBack"
-                            value="back"
+                            class='move'
+                            type='submit'
+                            value='вернуть'
+                            name='getBack'
+                            value='back'
                         />
                     </form>
                 </li>
@@ -73,20 +73,20 @@
         </ul>
         <br /><br />
         <br /><br />
-        <form class="deleteAll" action="/deleteAll" method="post">
-            <input class="deleteAllin" type="submit" value="удалитьВсе" />
+        <form class='deleteAll' action='/deleteAll' method='post'>
+            <input class='deleteAllin' type='submit' value='удалитьВсе' />
         </form>
 
-        <div class="waveBackGround">
+        <div class='waveBackGround'>
             <svg
-                data-name="Layer 1"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1200 120"
-                preserveAspectRatio="none"
+                data-name='Layer 1'
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 1200 120'
+                preserveAspectRatio='none'
             >
                 <path
-                    d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-                    class="shape-fill"
+                    d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z'
+                    class='shape-fill'
                 ></path>
             </svg>
         </div>

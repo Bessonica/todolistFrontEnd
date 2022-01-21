@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-let todoSchema = new Schema({
+const todoSchema = new Schema({
     description: {
         type: String,
         required: true,
@@ -18,5 +18,5 @@ let todoSchema = new Schema({
     id: String,
 });
 
-const modelExp = mongoose.model("Todo", todoSchema);
+const modelExp = mongoose.model('Todo', todoSchema);
 export default modelExp;

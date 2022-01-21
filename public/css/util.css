@@ -16,6 +16,6 @@ body {
 body {
     background-image: radial-gradient(mintcream 0%, gray 100%);
     background-color: white;
-    font-family: "Trebuchet MS";
+    font-family: 'Trebuchet MS';
     user-select: none;
 }

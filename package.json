@@ -8,6 +8,7 @@
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./ ./routes ./models --ext .js",
+    "lint:fix": "eslint --fix ./ ./routes ./models --ext .js",
     "prettier": "prettier --write  **/*.js **/*.hbs **/*.html **/*.css --ignore-path .gitignore",
     "prettier:check": "prettier --check --debug-check  **/*.js **/*.hbs **/*.html **/*.css --ignore-path .gitignore"
   },
