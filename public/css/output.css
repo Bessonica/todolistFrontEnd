@@ -108,4 +108,20 @@ h1 {
     color: white;
 }
 
+.errorMessage {
+    position: relative;
+    border-radius: 10px;
+    padding: 45px;
+    top: 250px;
+    left: 250px;
+    right: 900px;
+    width: 700px;
+    height: 250px;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.errorMessage h1 {
+    font-weight: bold;
+}
+
 /*# sourceMappingURL=output.css.map */

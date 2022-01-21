@@ -25,13 +25,38 @@ export default async function router(fastify) {
         res.view("/views/index", { todoArr });
     });
 
+    fastify.get("/error", (req, res) => {
+        let textLength =
+            todoJobSchema.schema.body.properties.description.maxLength;
+        let priorLength = todoJobSchema.schema.body.properties.prior.maximum;
+
+        let message = "there is an unknown mistake";
+        let defaultMsg = `Описание: максимум ${textLength} символов.приоритет: максимум число ${priorLength}.`;
+        if (
+            todoArr.error.message ===
+            "body.description should NOT be longer than 20 characters"
+        ) {
+            message =
+                "Твоя задача слишком длинная (максимум = " + textLength + " )";
+        } else {
+            message =
+                "Твой приоритет слишком велик (максимум = " +
+                priorLength +
+                " )";
+        }
+        res.view("/views/error", { message, defaultMsg });
+    });
+
     fastify.post("/todos", todoJobSchema, (req, res) => {
         console.log("todos");
         let dataSanitized = req.body;
+        todoArr.error = [];
 
         //show that form input is not accepted
         if (req.validationError) {
-            res.code(400).send(req.validationError);
+            todoArr.error = [];
+            todoArr.error = req.validationError;
+            res.redirect("/error");
             return;
         }
 
