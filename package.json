@@ -1,0 +1,41 @@
+{
+  "name": "panfilovtodov1",
+  "version": "1.0.0",
+  "description": "todolist by panfilov dmytro Ip-95 ",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./ ./routes ./models --ext .js",
+    "lint:fix": "eslint --fix ./ ./routes ./models --ext .js",
+    "prettier": "prettier --write  **/*.js **/*.hbs **/*.html **/*.css --ignore-path .gitignore",
+    "prettier:check": "prettier --check --debug-check  **/*.js **/*.hbs **/*.html **/*.css --ignore-path .gitignore"
+  },
+  "author": "dmytro panfilov",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^14.2.0",
+    "fastify": "^3.25.3",
+    "fastify-formbody": "^5.2.0",
+    "fastify-static": "^4.5.0",
+    "handlebars": "^4.7.7",
+    "mongoose": "6.1.7",
+    "point-of-view": "^5.0.0",
+    "sanitizer": "^0.1.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-sonarjs": "^0.11.0",
+    "prettier": "^2.5.1"
+  },
+  "eslintConfig": {
+    "globals": {
+      "window": true,
+      "node": true
+    }
+  }
+}

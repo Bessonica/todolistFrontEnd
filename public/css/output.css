@@ -1,0 +1,127 @@
+@import '../css/util.css';
+
+.waveBackGround {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: -1;
+}
+.waveBackGround svg {
+    position: relative;
+    display: block;
+    width: calc(144% + 1.3px);
+    height: 323px;
+}
+.waveBackGround .shape-fill {
+    fill: #47b8b8;
+}
+
+form label,
+li form {
+    cursor: default;
+    padding-left: 0%;
+    color: black;
+    background-color: none;
+}
+form label.addTodo,
+li form.addTodo {
+    width: 25%;
+    background-color: none;
+}
+form label.deleteAll,
+li form.deleteAll {
+    background-color: none;
+}
+
+.deleteAllin,
+.send {
+    display: block;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 30px;
+    background: #8047b8;
+}
+
+.move,
+.delete {
+    border: none;
+    padding: 5px 8px;
+    border-radius: 10px;
+    background: #8047b8;
+}
+
+input {
+    transition: 0.5s;
+}
+
+.send:hover {
+    background: #47b8b8;
+    color: white;
+}
+.send:focus {
+    background: #e58b1a;
+}
+
+.deleteAllin:hover {
+    background: red;
+    color: white;
+}
+
+.delete:hover {
+    background: red;
+    color: white;
+}
+
+.move:hover {
+    background: #47b8b8;
+    color: white;
+}
+
+li {
+    font: small-caps 15px/1 serif;
+}
+form {
+    font: small-caps 18px/1 serif;
+}
+h1 {
+    cursor: default;
+    padding-left: 0%;
+    font: small-caps 24px/1 serif;
+    color: black;
+    background-color: none;
+}
+
+.in {
+    background-color: #47b8b8;
+    border: 2px solid black;
+    padding: 5px 14px;
+    border-radius: 5px;
+}
+.in.big {
+    color: white;
+}
+.in.small {
+    width: 10%;
+    color: white;
+}
+
+.errorMessage {
+    position: relative;
+    border-radius: 10px;
+    padding: 45px;
+    top: 250px;
+    left: 250px;
+    right: 900px;
+    width: 700px;
+    height: 250px;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.errorMessage h1 {
+    font-weight: bold;
+}
+
+/*# sourceMappingURL=output.css.map */

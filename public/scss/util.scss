@@ -1,0 +1,135 @@
+@import "../css/util.css";
+@import "wave.scss";
+@import "color.scss";
+
+
+
+
+%addTodoDeleteAll {
+    cursor:default;
+    padding-left: 0%;
+    color: black;
+
+    background-color: none;
+
+    &.addTodo{
+        width:25%;
+        background-color: none;
+    }
+
+    &.deleteAll{
+        background-color: none;
+    }
+}
+
+%bigButton {
+    display: block;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 30px;
+    background: $colorPurple;
+}
+
+%smallButton {
+    border: none;
+    padding: 5px 8px;
+    border-radius: 10px;
+    background:  $colorPurple;
+}
+
+// делаем кнопки
+input {
+    transition:0.5s;
+}
+
+.send{
+
+    @extend %bigButton;
+
+
+    &:hover{
+        background: $colorBlue ;
+        color:white;
+    }
+
+    &:focus{
+        background: $colorYellow ;
+    }
+  }
+
+.deleteAllin {
+
+    @extend %bigButton;
+
+    &:hover{
+        background: red;
+        color:white;
+    }
+}
+
+.delete{
+
+    @extend %smallButton;
+
+    &:hover{
+        background: red;
+        color:white;
+    }
+
+}
+
+.move{
+
+    @extend %smallButton;
+
+    &:hover{
+        background: $colorBlue;
+        color:white;
+    }
+}
+
+
+li{
+    font: small-caps 15px/1 serif;
+
+    form {
+        @extend %addTodoDeleteAll;
+         }
+
+}
+
+form {
+
+    font: small-caps 18px/1 serif;
+
+    label{
+        @extend %addTodoDeleteAll;
+    }
+    
+}
+
+h1{
+    cursor:default;
+    padding-left: 0%;
+    font: small-caps 24px/1 serif;
+    color: black;
+
+    background-color: none;
+}
+
+
+.in{
+    background-color: $colorBlue;
+    border: 2px solid black;
+    padding: 5px 14px;
+    border-radius: 5px;
+
+    &.big{
+        color:white;
+    }
+
+    &.small{
+        width:10%;
+        color:white;
+    }
+}
