@@ -1,18 +1,21 @@
 import todoArr from "../todoArr.js";
 import Todo from "../models/mongoTodo.js";
-// import Sanitize from "sanitize";
-// const sanitizer = Sanitize();
-// import sanitizer from "string-sanitizer";
 
 import Sanitizer from "sanitizer";
 
-const todoJob = {
-    type: "object",
-    properties: {
-        description: { type: "string", maxLength: 50 },
-        id: { type: "string" },
-        over: { type: "boolean" },
-        prior: { type: "integer", maximum: 100 },
+const todoJobSchema = {
+    schema: {
+        body: {
+            type: "object",
+            properties: {
+                description: { type: "string", maxLength: 50 },
+                id: { type: "string" },
+                over: { type: "boolean" },
+                prior: { type: "integer", maximum: 100 },
+            },
+            required: ["description", "prior"],
+            additionalProperties: false,
+        },
     },
 };
 
@@ -21,56 +24,43 @@ export default async function router(fastify) {
         res.view("/views/index", { todoArr });
     });
 
-    fastify.post(
-        "/todos",
-        {
-            schema: {
-                // Refence the schema here
-                body: todoJob,
-            },
-        },
-        (req, res) => {
-            console.log("todos");
-            let dataSanitized = req.body;
+    fastify.post("/todos", todoJobSchema, (req, res) => {
+        console.log("todos");
+        let dataSanitized = req.body;
 
-            dataSanitized.description = Sanitizer.sanitize(
-                dataSanitized.description
-            );
-            dataSanitized.prior = Sanitizer.sanitize(dataSanitized.prior);
+        dataSanitized.description = Sanitizer.sanitize(
+            dataSanitized.description
+        );
+        dataSanitized.prior = Sanitizer.sanitize(dataSanitized.prior);
 
-            if (!dataSanitized.description || !dataSanitized.prior) {
-                res.redirect("/");
-                return;
-            }
-
-            let date = new Date();
-            date = +date;
-            dataSanitized.id = date;
-            dataSanitized.date = new Date();
-
-            console.log("BODY \n", dataSanitized);
-            // console.log(typeof(req.body));
-
-            todoArr.put(dataSanitized);
-            console.log("dataSanitized arr \n", dataSanitized);
-
-            let newTodo = new Todo({
-                description: dataSanitized.description,
-                prior: dataSanitized.prior,
-                id: dataSanitized.id,
-            });
-
-            newTodo.save().then(function (result) {
-                console.log(
-                    "mongoDB DATA \n",
-                    result,
-                    "\n end of mongoDB DATA"
-                );
-            });
-
+        if (!dataSanitized.description || !dataSanitized.prior) {
             res.redirect("/");
+            return;
         }
-    );
+
+        let date = new Date();
+        date = +date;
+        dataSanitized.id = date;
+        dataSanitized.date = new Date();
+
+        console.log("BODY \n", dataSanitized);
+        // console.log(typeof(req.body));
+
+        todoArr.put(dataSanitized);
+        console.log("dataSanitized arr \n", dataSanitized);
+
+        let newTodo = new Todo({
+            description: dataSanitized.description,
+            prior: dataSanitized.prior,
+            id: dataSanitized.id,
+        });
+
+        newTodo.save().then(function (result) {
+            console.log("mongoDB DATA \n", result, "\n end of mongoDB DATA");
+        });
+
+        res.redirect("/");
+    });
 
     fastify.post("/pending/:id", (req, res) => {
         let index = todoArr.pending.findIndex(
@@ -117,9 +107,6 @@ export default async function router(fastify) {
         });
 
         res.redirect("/");
-
-        console.log("___over___\n");
-        console.log(todoArr);
     });
 
     fastify.post("/deleteAll", (req, res) => {

@@ -1,7 +1,6 @@
 import Fastify from "fastify";
 import PointOfView from "point-of-view";
 import FastifyStatic from "fastify-static";
-// import FastifySanitize from "fastify-casl";
 import handlebars from "handlebars";
 import FastifyFormbody from "fastify-formbody";
 import path from "path";
